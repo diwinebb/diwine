@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог битов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .filter, .beat {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Каталог битов</h1>
+    <div class="filter">
+        <label for="genre">Жанр:</label>
+        <select id="genre">
+            <option value="any">Любой</option>
+            <option value="hiphop">Hip-Hop</option>
+            <option value="trap">Trap</option>
+            <option value="r&b">R&B</option>
+        </select>
+    </div>
+    <div class="filter">
+        <label for="bpm">BPM:</label>
+        <select id="bpm">
+            <option value="any">Любой</option>
+            <option value="60-90">60-90</option>
+            <option value="90-120">90-120</option>
+            <option value="120-150">120-150</option>
+            <option value="150-180">150-180</option>
+        </select>
+    </div>
+    <div class="filter">
+        <label for="key">Тональность:</label>
+        <select id="key">
+            <option value="any">Любая</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+        </select>
+    </div>
+    <div class="beats">
+        <div class="beat">
+            <h3>Beat 1</h3>
+            <p>Жанр: Hip-Hop, BPM: 90, Тональность: C</p>
+            <button onclick="selectBeat('Beat 1', 'MP3')">Купить MP3</button>
+            <button onclick="selectBeat('Beat 1', 'WAV')">Купить WAV</button>
+        </div>
+        <div class="beat">
+            <h3>Beat 2</h3>
+            <p>Жанр: Trap, BPM: 120, Тональность: D</p>
+            <button onclick="selectBeat('Beat 2', 'MP3')">Купить MP3</button>
+            <button onclick="selectBeat('Beat 2', 'WAV')">Купить WAV</button>
+        </div>
+    </div>
+    <script>
+        function selectBeat(beatName, format) {
+            const data = {
+                beat: beatName,
+                format: format
+            };
+            // Отправляем данные в бота
+            Telegram.WebApp.sendData(JSON.stringify(data));
+            // Закрываем Web App
+            Telegram.WebApp.close();
+        }
+    </script>
+</body>
+</html>
